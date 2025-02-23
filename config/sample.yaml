@@ -2,7 +2,7 @@ log:
   path: "~/foo.log" # optional; alternatively, use environment variable T2M_LOG_PATH
 tibber:
   token: "tibbertoken" # alternatively, use environment variable T2M_TIBBER_TOKEN
-  home: "homeid" # alternatively, use environment variable T2M_TIBBER_TOKEN
+  home: "homeid" # alternatively, use environment variable T2M_TIBBER_HOME
 mqtt:
   server1: # a name of your choise, will be shown in the logs
     host: "127.0.0.1:1883"
