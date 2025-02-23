@@ -11,8 +11,7 @@ class Mqtt():
         self.__mqtt = mqtt.Client()
         self.__mqtt.on_connect = self.__on_connect
 
-        ip, port = get_argument(config, 'host').split(':')
-
+        ip, port = get_argument(config, 'host', varname="T2M_MQTT_HOST_"+self.__name).split(':')
         ca = get_optional_argument(config, 'ca')
         public_key = get_optional_argument(config, 'public_key')
         private_key = get_optional_argument(config, 'private_key')
@@ -20,8 +19,8 @@ class Mqtt():
             insecure = get_optional_argument(config, 'tls_insecure') == True
             self.__mqtt.tls_set(ca_certs=ca, certfile=public_key, keyfile=private_key, cert_reqs=CERT_NONE if insecure else None)
 
-        user = get_optional_argument(config, 'user')
-        password = get_optional_argument(config, 'password')
+        user = get_optional_argument(config, 'user', varname="T2M_MQTT_USER_"+self.__name)
+        password = get_optional_argument(config, 'password', varname="T2M_MQTT_PASS_"+self.__name)
         if user or password:
             self.__mqtt.username_pw_set(user, password)
 

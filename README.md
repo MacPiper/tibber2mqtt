@@ -33,7 +33,7 @@ The configuration is done via yaml file. The example file can be found in [confi
 
 To keep sensitive content out of config files, some parameters can also be passed using environment variables. See the example config file for further explanations.
 
-## Setup without docker
+## Setup for running without docker
 ### **Prerequisites**
 
 - Python version 3.8 or newer with pip + venv
@@ -56,11 +56,17 @@ python3 -m pip install -r requirements.txt
 source <path to virtual environment>/bin/activate
 python3 -B tibber2mqtt/tibber2mqtt.py --config /path/to/your/config/file.yaml
 ```
-## **Setup using docker**
+## **Setup for running using docker**
 For configuration copies of the sample configration files need to be created and adapted:
 
 - config/config.yaml based on config/sample.yaml
 - tibber.env based on tibber.env.sample
+- mqtt.env based on mqtt.env.sample
+Please not that mqtt.env may contain data for multiple servers, the name used for the server in config.yaml (e.g. server1) is part
+of the environment variable names, e.g. ```T2M_MQTT_HOST_server1=localhost:1883```
+. Just add a set of additional environment variables for
+every additional server.
+
 After ajusting the configuration the container can be started in the background using the following command:
 
 ```
@@ -71,4 +77,4 @@ docker compose up -d
 
 You have trouble getting started? Something does not work as expected? You have some suggestions or thoughts? Please let me know.
 
-Feel free to open an issue here on github or contact me on reddit: [3lr1ng0](https://www.reddit.com/user/3lr1ng0).
+Feel free to open an issue here on github or contact me through email  [46072226+MacPiper@users.noreply.github.com](mailto:46072226+MacPiper@users.noreply.github.com)

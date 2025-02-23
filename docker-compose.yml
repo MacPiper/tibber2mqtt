@@ -8,7 +8,7 @@ services:
             - /etc/timezone:/etc/timezone:ro
             - /etc/localtime:/etc/localtime:ro
         env_file:
-            #- mqtt.env # login data to mqtt broker
+            - mqtt.env # login data to mqtt brokers
             - tibber.env # data for tibber connection
         environment:
             - TZ=Europe/Berlin     
