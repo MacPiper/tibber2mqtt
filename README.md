@@ -62,9 +62,9 @@ For configuration copies of the sample configration files need to be created and
 - config/config.yaml based on config/sample.yaml
 - tibber.env based on tibber.env.sample
 - mqtt.env based on mqtt.env.sample
-Please not that mqtt.env may contain data for multiple servers, the name used for the server in config.yaml (e.g. server1) is part
-of the environment variable names, e.g. ```T2M_MQTT_HOST_server1=localhost:1883```
-. Just add a set of additional environment variables for
+
+Please note that mqtt.env may contain data for multiple servers, the name used for the server in config.yaml (e.g. server1) is part
+of the environment variable names, e.g. ```T2M_MQTT_HOST_server1=localhost:1883```. Just add a set of additional environment variables for
 every additional server.
 
 After ajusting the configuration the container can be started in the background using the following command:
