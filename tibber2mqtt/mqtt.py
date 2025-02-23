@@ -26,6 +26,7 @@ class Mqtt():
             self.__mqtt.username_pw_set(user, password)
 
         self.__topic = get_argument(config, 'topic')
+        self.__plain_number_output = get_optional_argument(config, 'plain_number_output') == True
 
         self.__mqtt.connect(ip, int(port), 60)
         self.__mqtt.loop_start()
@@ -34,8 +35,12 @@ class Mqtt():
         self.__mqtt.loop_stop()
 
     def send(self, value):
-        self.__mqtt.publish(self.__topic, struct.pack('!H', int(value)), qos=0, retain=False)
+        if self.__plain_number_output:
+            self.__mqtt.publish(self.__topic, int(value), qos=0, retain=False)
+        else:
+            self.__mqtt.publish(self.__topic, struct.pack('!H', int(value)), qos=0, retain=False)
         logger.log(f'[{self.__name}] Sent {value} to {self.__topic}')
 
     def __on_connect(self, client, userdata, flags, rc):
         logger.log(f'[{self.__name}] MQTT connected with code {rc}.')
+
