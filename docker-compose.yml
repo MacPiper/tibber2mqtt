@@ -1,0 +1,18 @@
+services: 
+    tibber2mqtt: 
+        container_name: tibber2mqtt
+        build: .
+        volumes:
+            - ./tibber2mqtt:/usr/src/app/tibber2mqtt
+            - ./config:/usr/src/app/config
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+        env_file:
+            #- mqtt.env # login data to mqtt broker
+            - tibber.env # data for tibber connection
+        environment:
+            - TZ=Europe/Berlin     
+        restart: unless-stopped
+        labels:
+            - "napnap75.backup.dirs=/home/pi/tibber2mqtt"
+            #- "napnap75.backup.stopstart"
